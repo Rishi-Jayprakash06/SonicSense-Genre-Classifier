@@ -2,7 +2,7 @@
 
 SonicSense is an end-to-end Machine Learning pipeline and web application designed to automatically classify the genre of audio files using audio feature extraction and Neural Networks. 
 
-![SonicSense UI Demo](docs/demo.png) *(Note: Replace this image path with an actual screenshot of your UI once you upload it to GitHub)*
+
 
 ## 🎵 Features
 - **Intelligent Genre Classification:** Uses a Neural Network (Multi-Layer Perceptron / CNN) trained on the GTZAN dataset to predict the genre of any audio file.
