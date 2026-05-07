@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and Models
+Data/
+# model/sklearn_model.pkl  <-- Keeping this so the repo works out of the box
+# model/genre_classifier.h5
+
+# Flask uploads and temp files
+static/uploads/*
+!static/uploads/.gitkeep
+static/spectrograms/*
+!static/spectrograms/.gitkeep
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# MacOS
+.DS_Store

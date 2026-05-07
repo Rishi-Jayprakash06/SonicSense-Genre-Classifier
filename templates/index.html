@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Genre Classification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Sonic<span class="highlight">Sense</span></h1>
+            <p>AI-Powered Music Genre Classification</p>
+        </header>
+
+        {% if not model_loaded %}
+        <div class="warning-banner">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+            <p>The prediction model is not trained yet. Please run the Jupyter notebooks to train the model, then restart the server.</p>
+        </div>
+        {% endif %}
+
+        <main class="glass-panel">
+            <div class="upload-section" id="drop-zone">
+                <input type="file" id="audio-file" accept=".wav,.mp3,.au" hidden>
+                <div class="upload-content">
+                    <div class="icon">🎵</div>
+                    <h2>Upload Audio File</h2>
+                    <p>Drag and drop or click to browse</p>
+                    <span class="formats">Supports .wav, .mp3, .au (GTZAN default)</span>
+                </div>
+            </div>
+
+            <div class="loading-state hidden" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing audio frequencies...</p>
+            </div>
+
+            <div class="results-section hidden" id="results">
+                <div class="song-playback" style="text-align: center; margin-bottom: 2rem;">
+                    <h3 id="song-title" style="margin-bottom: 1rem; color: var(--text-color);">Song Title</h3>
+                    <audio id="audio-player" controls style="width: 100%; max-width: 400px; border-radius: 30px; outline: none;">
+                        <source id="audio-source" src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="genre-display">
+                    <h3>Predicted Genre</h3>
+                    <div class="genre-badge" id="genre-name">Jazz</div>
+                    <div class="confidence">
+                        Confidence: <span id="confidence-score">95.4%</span>
+                    </div>
+                </div>
+
+                <div class="spectrogram-display">
+                    <h3>Mel Spectrogram Visualization</h3>
+                    <div class="img-container">
+                        <img id="spectrogram-img" src="" alt="Audio Spectrogram">
+                    </div>
+                </div>
+                
+                <button class="btn-reset" id="reset-btn">Analyze Another Track</button>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by Keras & Librosa • Trained on GTZAN Dataset</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
